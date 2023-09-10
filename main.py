@@ -151,7 +151,8 @@ class ProfitGenerator:
             content = self.data_retriever.retrieve_content(url)
             data = self.data_collector.collect_data(content)
             self.data_storage_manager.store_data(data, format='json')
-            self.resource_manager.download_resource(url, destination='resources/')
+            self.resource_manager.download_resource(
+                url, destination='resources/')
 
         self.data_storage_manager.manage_data()
         self.report_generator.generate_report()
@@ -161,7 +162,8 @@ class ProfitGenerator:
 
 
 def main() -> None:
-    logging.basicConfig(filename='error.log', level=logging.ERROR, format='%(levelname)s - %(message)s')
+    logging.basicConfig(filename='error.log', level=logging.ERROR,
+                        format='%(levelname)s - %(message)s')
     profit_generator = ProfitGenerator()
     profit_generator.generate_profit()
 
