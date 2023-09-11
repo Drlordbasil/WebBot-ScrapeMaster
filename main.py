@@ -16,7 +16,7 @@ class SearchEngineAPI:
             results = self.parse_response(response)
             return results
         except requests.exceptions.RequestException as e:
-            ErrorManager().handle_error(e)
+            self.handle_error(e)
 
     def parse_response(self, response) -> List[str]:
         soup = BeautifulSoup(response.text, 'html.parser')
@@ -44,7 +44,7 @@ class WebDataRetriever:
             content = self.parse_content(response)
             return content
         except requests.exceptions.RequestException as e:
-            ErrorManager().handle_error(e)
+            self.handle_error(e)
 
     def parse_content(self, response) -> BeautifulSoup:
         return BeautifulSoup(response.content, 'html.parser')
@@ -65,7 +65,7 @@ class ResourceManager:
             with open(destination, 'wb') as f:
                 f.write(response.content)
         except requests.exceptions.RequestException as e:
-            ErrorManager().handle_error(e)
+            self.handle_error(e)
 
 
 class DataStorageManager:
